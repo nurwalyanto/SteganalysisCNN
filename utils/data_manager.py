@@ -42,7 +42,7 @@ class DataManager(object):
             target_size=(self.img_width, self.img_height),
             classes=['cover', 'stego'],
             batch_size=train_batch_size,
-            color_mode='grayscale',
+            color_mode='rgb',
             # save_to_dir='/home/rabii/Desktop/thesis/projects/project1/datasets/augmented_data',
             # class_mode='binary',
             shuffle=True)
@@ -53,7 +53,7 @@ class DataManager(object):
             target_size=(self.img_width, self.img_height),
             classes=['cover', 'stego'],
             batch_size=val_batch_size,
-            color_mode='grayscale',
+            color_mode='rgb',
             # class_mode='binary',
             shuffle=True)
 
@@ -69,7 +69,7 @@ class DataManager(object):
             target_size=(self.img_width, self.img_height),
             classes=['cover', 'stego'],
             batch_size=16,
-            color_mode='grayscale',
+            color_mode='rgb',
             # class_mode='binary',
             shuffle=False)
         return test_generator
