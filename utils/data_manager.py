@@ -12,7 +12,7 @@ class DataManager(object):
         super(DataManager, self).__init__()
         self.img_width = img_width
         self.img_height = img_height
-        if classes in not None:
+        if classes is not None:
             self.classes = classes
         else:
             self.classes=['cover', 'stego']
