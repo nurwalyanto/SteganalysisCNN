@@ -8,10 +8,14 @@ from keras.preprocessing.image import ImageDataGenerator
 class DataManager(object):
     """docstring for DataManager"""
 
-    def __init__(self, img_width, img_height):
+    def __init__(self, img_width, img_height,classes=None):
         super(DataManager, self).__init__()
         self.img_width = img_width
         self.img_height = img_height
+        if classes in not None:
+            self.classes = classes
+        else:
+            self.classes=['cover', 'stego']
 
     def get_train_data(self, train_data_dir, validation_data_dir, train_batch_size, val_batch_size):
         # used to rescale the pixel values from [0, 255] to [0, 1] interval
@@ -40,7 +44,7 @@ class DataManager(object):
         train_generator_augmented = train_datagen_augmented.flow_from_directory(
             train_data_dir,
             target_size=(self.img_width, self.img_height),
-            classes=['cover', 'stego'],
+            classes=self.classes,
             batch_size=train_batch_size,
             color_mode='grayscale',
             # save_to_dir='/home/rabii/Desktop/thesis/projects/project1/datasets/augmented_data',
@@ -51,7 +55,7 @@ class DataManager(object):
         validation_generator = datagen.flow_from_directory(
             validation_data_dir,
             target_size=(self.img_width, self.img_height),
-            classes=['cover', 'stego'],
+            classes=self.classes,
             batch_size=val_batch_size,
             color_mode='grayscale',
             # class_mode='binary',
@@ -67,7 +71,7 @@ class DataManager(object):
         test_generator = datagen.flow_from_directory(
             test_data_dir,
             target_size=(self.img_width, self.img_height),
-            classes=['cover', 'stego'],
+            classes=self.classes,
             batch_size=16,
             color_mode='grayscale',
             # class_mode='binary',
